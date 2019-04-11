@@ -1,1 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~foundation-sites/scss/foundation';
+@import './sass/list-group.scss';
+
+@include foundation-everything(true);
+@include foundation-flex-grid;
+
+body {
+  background: $medium-gray;
+}
+
+.header {
+  padding-top: 100px;
+  padding-bottom: 50px;
+  background: $white;
+}
+
+.lista {
+  padding: 40px;
+}
+
+.button-eliminar {
+  margin: 0;
+}
+
+.aligner {
+  display: flex;
+  align-items: center;
+}
+
+.current {
+  font-weight: bold;
+  font-size: 20px;
+  color: green;
+}
