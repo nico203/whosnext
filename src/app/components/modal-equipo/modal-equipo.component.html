@@ -1,0 +1,17 @@
+<div class="reveal large" #modal>
+  <button class="close-button" aria-label="Close modal" (click)="cerrar()" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+
+  <h4>Equipo</h4>
+  <p>Ingresa los integrantes separados por saltos de linea</p>
+  <textarea rows="10" [(ngModel)]="textoEquipos"></textarea>
+
+  <div class="row column">
+    <div class="button-group">
+      <button type="button" class="button" (click)="guardar()">Guardar</button>
+      <button type="button" class="button secondary" (click)="limpiar()">Limpiar</button>
+      <button type="button" class="button alert" (click)="cerrar()">Cerrar</button>
+    </div>
+  </div>
+</div>
