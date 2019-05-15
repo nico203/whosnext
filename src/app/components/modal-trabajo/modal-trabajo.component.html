@@ -4,7 +4,7 @@
   </button>
 
   <h4>Trabajo</h4>
-  <textarea rows="10" [(ngModel)]="trabajo"></textarea>
+  <textarea rows="10" [(ngModel)]="trabajo" (ngModelChange)="change()"></textarea>
 
   <div class="row column">
     <div class="button-group">

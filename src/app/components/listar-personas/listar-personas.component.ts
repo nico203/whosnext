@@ -1,3 +1,4 @@
+import { EquipoService } from './../../services/equipo.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,20 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListarPersonasComponent implements OnInit {
 
-  personas: string[] = [
-    'prueba',
-    'prueba1',
-    'asd',
-    '34',
-    'jrtg',
-    'rwe',
-  ];
+  personas: string[] = [];
 
   personaActual: string;
 
-  constructor() { }
+  constructor(
+    private equipoService: EquipoService
+  ) { }
 
   ngOnInit() {
+    this.personas = this.equipoService.getEquipo() || [];
+
+    this.equipoService.equipo$.subscribe(
+      equipo => {
+        if (equipo) {
+          this.personas = equipo;
+        }
+      }
+    );
   }
 
   randomizr() {
