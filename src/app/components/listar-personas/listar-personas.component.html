@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row expanded header">
+  <div class="row expanded header" appRandomizr>
     <div class="columns small-8 small-offset-2">
       <div class="row">
         <div class="columns">
@@ -7,7 +7,13 @@
           <span class="current">{{ personaActual }}</span>
         </div>
         <div class="columns shrink">
-          <button type="button" class="button primary" (click)="randomizr()" >Dame uno</button>
+          <div class="row column">
+            <button type="button" class="button primary" (click)="randomizr()" appRandomizr>Dame uno</button>
+          </div>
+          <div class="row column">
+            <input type="checkbox" id="randomizr" [(ngModel)]="isRnd" (ngModelChange)="setRandomizer()">
+            <label for="randomizr">Randomizr</label>
+          </div>
         </div>
       </div>
     </div>
@@ -15,20 +21,20 @@
   <div class="row expanded lista">
     <div class="small-8 small-offset-2">
       <h4>Disponibles</h4>
-      <ul class="list-group">
-        <li *ngFor="let persona of personas; let i = index" class="list-group-item">
-          <div class="row">
-            <div class="columns aligner">
-              <span>{{persona}}</span>
-            </div>
-            <div class="columns shrink">
-              <button class="button alert button-eliminar" (click)="eliminar(i)" >
-                <i class="fas fa-trash"></i>
-              </button>
-            </div>
-          </div>
-        </li>
-      </ul>
+      <ng-container *ngIf="personas && personas.length; else noHayPersonas">
+        <ul class="list-group" appRandomizr>
+          <li *ngFor="let persona of personas" class="list-group-item randomizr-li"
+            [ngClass]="{'disabled': persona.eliminado}" appRandomizr>
+            <app-item-persona class="display-block" [persona]="persona"></app-item-persona>
+          </li>
+        </ul>
+      </ng-container>
+      <ng-template #noHayPersonas>
+        <div class="callout primary">
+          <h5>No hay integrantes cargados</h5>
+          <p>Carga integrantes desde el botón de equipo</p>
+        </div>
+      </ng-template>
     </div>
   </div>
 </div>

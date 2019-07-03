@@ -18,6 +18,10 @@ export class ModalEquipoComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit() {
+    this.obtenerEquipo();
+  }
+
+  obtenerEquipo() {
     const equipo = this.equipoService.getEquipo();
     if (equipo) {
       this.textoEquipos = equipo.join('\n');
@@ -29,6 +33,7 @@ export class ModalEquipoComponent implements OnInit, AfterViewInit {
   }
 
   abrir() {
+    this.obtenerEquipo();
     this.reveal.open();
   }
 
@@ -37,7 +42,7 @@ export class ModalEquipoComponent implements OnInit, AfterViewInit {
   }
 
   guardar() {
-    const equipo = this.textoEquipos.split('\n');
+    const equipo = this.textoEquipos.split('\n').map(str => str.trim()).filter(str => str.length !== 0).sort();
     this.equipoService.setEquipo(equipo);
     this.cerrar();
   }

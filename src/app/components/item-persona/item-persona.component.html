@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="columns aligner">
+    <span>{{persona.nombre}}</span>
+  </div>
+  <div class="columns shrink">
+    <button class="button alert button-eliminar" (click)="eliminar()" appRandomizr>
+      <i class="fas fa-trash"></i>
+    </button>
+  </div>
+</div>
+<div class="randomizr-container" *ngIf="persona.eliminado">
+  <div class="row">
+    <div class="columns"></div>
+    <div class="columns shrink">
+      <button class="button success button-eliminar" (click)="restaurar()">
+        <i class="fas fa-sync-alt"></i>
+      </button>
+    </div>
+  </div>
+</div>

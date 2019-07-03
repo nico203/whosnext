@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { ListarPersonasComponent } from './components/listar-personas/listar-personas.component';
 import { ModalEquipoComponent } from './components/modal-equipo/modal-equipo.component';
 import { ModalTrabajoComponent } from './components/modal-trabajo/modal-trabajo.component';
+import { RandomizrDirective } from './directives/randomizr.directive';
+import { ItemPersonaComponent } from './components/item-persona/item-persona.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { ModalTrabajoComponent } from './components/modal-trabajo/modal-trabajo.
     ListarPersonasComponent,
     ModalEquipoComponent,
     ModalTrabajoComponent,
+    RandomizrDirective,
+    ItemPersonaComponent,
   ],
   imports: [
     BrowserModule,
