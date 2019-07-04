@@ -52,6 +52,8 @@ export class ListarPersonasComponent implements OnInit {
     const length = filtered.length;
     const random = Math.floor(Math.random() * length);
     this.personaActual = filtered[random].nombre;
-    this.randomizrService.change();
+    if (this.isRnd) {
+      this.randomizrService.change();
+    }
   }
 }
