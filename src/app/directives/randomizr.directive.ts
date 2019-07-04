@@ -17,6 +17,8 @@ export class RandomizrDirective implements OnInit, OnDestroy {
   coloresEliminado = [];
   randomizr = false;
 
+  colores: string[];
+
   constructor(
     private randomizrService: RandomizrService,
     private element: ElementRef,
@@ -42,12 +44,7 @@ export class RandomizrDirective implements OnInit, OnDestroy {
       }
     );
 
-    let color: string;
-    for (let i = 0; i < 3; i++) {
-      color = this.randomizrService.generateRandomColor();
-      this.coloresEliminado.push(color);
-      this.coloresEliminado.push(this.randomizrService.getComplementaryColor(color));
-    }
+    this.coloresEliminado = this.randomizrService.generateColors();
   }
 
   ngOnDestroy() {
@@ -58,8 +55,7 @@ export class RandomizrDirective implements OnInit, OnDestroy {
   }
 
   eliminar() {
-    if (!this.randomizr) { return; }
-
+    this.colores = this.randomizr ? this.coloresEliminado : this.randomizrService.defaultsColors;
     let indice = 0;
     interval(1000).pipe(
       takeUntil(this.restaurado$),
@@ -67,7 +63,7 @@ export class RandomizrDirective implements OnInit, OnDestroy {
         this.renderer.removeStyle(this.element.nativeElement, 'background-color');
       }),
     ).subscribe(() => {
-      this.renderer.setStyle(this.element.nativeElement, 'background-color', this.coloresEliminado[indice]);
+      this.renderer.setStyle(this.element.nativeElement, 'background-color', this.colores[indice]);
       indice = (indice === 5) ? 0 : indice + 1;
     });
   }
